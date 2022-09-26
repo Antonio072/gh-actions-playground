@@ -26,15 +26,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: ${{ steps.check_target_branch.outputs.branch }}
           branch: ${{ github.event.pull_request.head.ref }}
-          title: ${{ github.event.pull_request.title }}
-          body: ${{ github.event.pull_request.body }}
-          labels: ${{ github.event.pull_request.labels }}
-          assignees: ${{ github.event.pull_request.assignees }}
-          reviewers: ${{ github.event.pull_request.requested_reviewers }}
-          team-reviewers: ${{ github.event.pull_request.requested_teams }}
-          draft: ${{ github.event.pull_request.draft }}
-          delete-branch: true
-          close-issue: true
           branch-suffix: timestamp
           commit-message: Change target branch
           title: Change target branch
@@ -44,11 +35,11 @@ jobs:
           labels: |
             target-branch-changed
           assignees: |
-            peter-evans
+            Antonio072
           reviewers: |
-            peter-evans
+            Antonio072
           team-reviewers: |
-            peter-evans
+            Antonio072
           draft: false
           delete-branch: true
           close-issue: true
