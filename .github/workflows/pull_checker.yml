@@ -1,6 +1,6 @@
 # Checks if the target branch is not master
 # If it is automatically change to development
-name: Pull Request
+name: Pull Request Branch Check
 on:
   pull_request:
     types: [opened, synchronize, reopened]
