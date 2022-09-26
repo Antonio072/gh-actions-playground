@@ -39,6 +39,3 @@ jobs:
             Antonio072
           team-reviewers: |
             Antonio072
-          draft: false
-          delete-branch: false
-          close-issue: true
