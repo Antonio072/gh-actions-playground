@@ -8,6 +8,9 @@ jobs:
   check_target_branch:
     runs-on: ubuntu-latest
     steps:
+      # Comment
+      - name: Saying hi
+      - run: echo "Hello world"
       - name: Check target branch
         uses: actions/checkout@v2
         with:
