@@ -1,0 +1,42 @@
+# Checks if the target branch is not master
+# If it is automatically change to development
+name: Pull Request
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  check_target_branch:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello world"
+      - name: Check target branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check target branch
+        id: check_target_branch
+        run: |
+          if [ "${{ github.event.pull_request.base.ref }}" = "master" ]; then
+            echo "::set-output name=branch::development"
+          else
+            echo "::set-output name=branch::${{ github.event.pull_request.base.ref }}"
+          fi
+      - name: Change target branch
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: ${{ steps.check_target_branch.outputs.branch }}
+          branch: ${{ github.event.pull_request.head.ref }}
+          branch-suffix: timestamp
+          commit-message: Change target branch
+          body: |
+            This pull request was automatically created because the target branch was changed.
+            The original pull request was: ${{ github.event.pull_request.html_url }}
+          labels: |
+            target-branch-changed
+          assignees: |
+            Antonio072
+          reviewers: |
+            Antonio072
+          team-reviewers: |
+            Antonio072
